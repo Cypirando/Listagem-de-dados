@@ -4,7 +4,8 @@
   "description": "Projeto totalmente do zero, desde a UI (User Interface/Interface do Usuário) até funcionalidades diferenciais, como filtros, paginação e ordenação.",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch ./src/server.ts"
+    "dev": "tsx watch ./src/server.ts",
+    "setup": "tsx ./src/setup.ts"
   },
   "keywords": [],
   "author": "",

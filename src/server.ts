@@ -2,7 +2,7 @@ import fastify from "fastify";
 
 const app = fastify();
 
-app.get("/teste", () => {
+app.get("/links", () => {
   return "Hello word";
 });
 
