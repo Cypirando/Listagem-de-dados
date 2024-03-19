@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  postgres:
+    image: 'bitnami/postgresql:latest'
+    container_name: postgres
+    environment:
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_USER=docker
+      - POSTGRES_DB=shortLinks
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'postgres_data:/bitnami/postgresql/data'
+    user: root
+
+  redis:
+    image: 'bitnami/redis:latest'
+    container_name: redis
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis_data:/bitnami/redis/data'
+    environment:
+      - REDIS_PASSWORD=docker
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
