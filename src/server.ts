@@ -1,9 +1,10 @@
 import fastify from 'fastify';
 import { z } from 'zod';
+import { sql } from './lib/postgres';
 
 const app = fastify();
 
-app.get('/links', (request) => {
+app.get('/links', async (request, reply) => {
   const { code, url } = z
     .object({
       code: z.string().min(3),
@@ -11,9 +12,17 @@ app.get('/links', (request) => {
     })
     .parse(request.body);
 
-  return 'Hello word';
-});
+  const result = await sql/*sql*/ `
+      INSERT INTO short_links (code, original_url)
+      VALUES (${code} ${url})
+      RETURNING id
+    `;
 
+  const link = result[0];
+
+  return reply.status(201);
+});
+//1:20
 app
   .listen({
     port: 3333,
